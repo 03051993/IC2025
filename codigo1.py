@@ -1,28 +1,18 @@
-import tkinter as tk
+import streamlit as st
 
-def inverter_frase():
-    frase = entrada.get()
-    frase_invertida = frase[::-1]
-    resultado_label.config(text=f"Frase invertida: {frase_invertida}")
-
-# Configuração da janela principal
-janela = tk.Tk()
-janela.title("Inversor de Frases")
+# Título da aplicação
+st.title("Inversor de Frases")
 
 # Entrada de texto
-entrada_label = tk.Label(janela, text="Digite uma frase:")
-entrada_label.pack()
-
-entrada = tk.Entry(janela, width=50)
-entrada.pack()
+frase = st.text_input("Digite uma frase:")
 
 # Botão para inverter a frase
-botao_inverter = tk.Button(janela, text="Inverter", command=inverter_frase)
-botao_inverter.pack()
-
-# Label para exibir o resultado
-resultado_label = tk.Label(janela, text="")
-resultado_label.pack()
-
-# Inicia o loop da interface gráfica
-janela.mainloop()
+if st.button("Inverter frase"):
+    # Verifica se a frase foi preenchida
+    if frase:
+        # Exibe a frase invertida
+        frase_invertida = frase[::-1]
+        st.write("Frase invertida:")
+        st.write(frase_invertida)
+    else:
+        st.write("Por favor, digite uma frase para inverter.")
